@@ -32,7 +32,7 @@ def secret_key_base
   token.string
 end
 
-def copy_from_repo(filename, erb: false)
+def copy_from_repo(filename, erb = false)
   begin
     get "#{repo_root}/files/#{filename}", filename
     template "#{Dir.pwd}/#{filename}", force: true if erb
