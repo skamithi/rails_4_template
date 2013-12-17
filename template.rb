@@ -28,15 +28,15 @@ create_gem_file
 #create_rvm_bundler_integration
 #set_rvm_ruby_version
 #
-#heading "Edit Environment Files" ###############################################
-#apply recipe("environment")
+heading "Edit Environment Files" ###############################################
+apply recipe("environment")
 #
 #sub_heading "Application"
 #
-#split_out_locale_files
+split_out_locale_files
 #add_custom_libraries_to_load_path
-#remove_test_unit_from_railties
-#suppress_helper_and_view_spec_generation
+remove_test_unit_from_railties
+set_test_framework_add_factory_girl
 #
 #heading "Figaro Config" ########################################################
 #apply recipe("figaro")

@@ -11,7 +11,7 @@ end
 
 def remove_test_unit_from_railties
   comment "# Replace rails/all with individual railties"
-  comment "# except test::unit (using RSpec)"
+  comment "# except test::unit"
   gsub_file 'config/application.rb', "require 'rails/all'" do <<-RUBY
 # Pick the frameworks you want:
 require 'active_record/railtie'
@@ -23,14 +23,14 @@ RUBY
   end
 end
 
-def suppress_helper_and_view_spec_generation
-  comment "# Don't generate helper or view specs"
+def set_test_framework_add_factory_girl
+  comment "# set framework to use rspec"
+  comment "# add factory girl for as a fixture replacement"
   insert_into_file 'config/application.rb',
                    after: "Rails::Application\n" do <<-RUBY
     config.generators do |g|
-      g.view_specs false
-      g.helper_specs false
-      g.fixture_replacement :factory_girl
+      g.test_framework :rspec
+      g.fixture_replacement :factory_girl, :dir => "spec/support/factories"
     end
   RUBY
   end
