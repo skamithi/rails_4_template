@@ -1,6 +1,6 @@
-# sqlite: &sqlite
-#   adapter: sqlite3
-#   database: db/<%= Rails.env %>.sqlite3
+sqlite: &sqlite
+  adapter: sqlite3
+  database: db/<%= Rails.env %>.sqlite3
 
 # mysql: &mysql
 #   adapter: mysql2
@@ -15,20 +15,32 @@ postgresql: &postgresql
   password: <%= ENV['DB_PASSWORD'] %>
   min_messages: ERROR
 
-defaults: &defaults
+default_settings: &defaults
   pool: 5
   timeout: 5000
   host: localhost
-  <<: *<%= ENV['DB'] || "postgresql" %>
+
+#defaults: &defaults
+#  pool: 5
+#  timeout: 5000
+#  host: localhost
+#  <<: *<%= ENV['DB'] || "postgresql" %>
 
 development:
   <<: *defaults
+  <<: *sqlite
 
 test: &test
   <<: *defaults
+  <<: *sqlite
+
+staging:
+  <<: *defaults
+  <<: *postgresql
 
 production:
   <<: *defaults
+  <<: *postgresql
 
 cucumber:
   <<: *test

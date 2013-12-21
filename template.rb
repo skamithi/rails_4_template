@@ -44,19 +44,23 @@ set_test_framework_add_factory_girl
 #create_secure_app_config
 #create_example_app_config
 #
-#heading "Config/create Postgres Database" ######################################
-#apply recipe("database")
+heading "Config/create  Database" ######################################
+apply recipe("database")
 #
-#create_secure_database_config
-#destroy_any_previous_databases
-#create_databases
+create_secure_database_config
+destroy_any_previous_databases
+create_databases
 #
-#heading "Configure Initializers" ###############################################
-#apply recipe("initializers")
-#
+heading "Configure Initializers" ###############################################
+apply recipe("initializers")
+
 #create_basic_initializers_for_installed_gems
 #insert_figaro_config_into_secret_token
-#simple_form_initializer
+simple_form_initializer
+i18n_js_initializer
+form_field_defaults
+active_record_fixes
+
 #
 #heading "Configure Locale Structure" ###########################################
 #apply recipe("locales")
@@ -64,11 +68,12 @@ set_test_framework_add_factory_girl
 #create_rails_locales
 #create_app_locales
 #create_vendor_locales
+
+heading "Create/overrride Bootstrap JS/CSS" ####################################
 #
-#heading "Create/overrride Bootstrap JS/CSS" ####################################
-#
-#apply recipe("javascript")
-#require_custom_javascript
+apply recipe("javascript")
+require_custom_javascript
+remove_require_tree
 #
 #apply recipe("css")
 #customize_application_css
