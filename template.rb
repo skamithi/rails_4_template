@@ -75,8 +75,8 @@ apply recipe("javascript")
 require_custom_javascript
 remove_require_tree
 #
-#apply recipe("css")
-#customize_application_css
+apply recipe("css")
+customize_application_css
 #create_custom_css
 #
 #heading "Create Base Models" ###################################################
@@ -90,10 +90,10 @@ remove_require_tree
 #seed_databases
 #
 #heading "Customize Generated Views" ############################################
-#apply recipe("views")
+apply recipe("views")
 #
-#customize_application_view
-#create_partials_for_layout
+customize_application_view
+create_partials_for_layout
 #
 #heading "Generate App Resources" ##############################################
 #apply recipe("app")
