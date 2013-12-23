@@ -7,6 +7,8 @@
   get    'signin',    to: 'sessions#new'
   delete 'signout',   to: 'sessions#destroy'
 
-  root to: 'pages#home'
+  get '/home', to: redirect('/')
+
+  root to: 'high_voltage/pages#show', id: 'home'
 
 end

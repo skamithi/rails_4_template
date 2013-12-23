@@ -60,7 +60,7 @@ simple_form_initializer
 i18n_js_initializer
 form_field_defaults
 active_record_fixes
-
+high_voltage_initializer
 #
 #heading "Configure Locale Structure" ###########################################
 #apply recipe("locales")
@@ -95,26 +95,26 @@ apply recipe("views")
 customize_application_view
 create_partials_for_layout
 #
-#heading "Generate App Resources" ##############################################
-#apply recipe("app")
+heading "Generate App Resources" ##############################################
+apply recipe("app")
 #
-#replace_routes
-#create_shared_resources
-#create_page_resources
-#create_session_resources
-#create_user_resources
-#create_shared_libraries
+replace_routes
 #
-#heading "App Clean Up" #########################################################
+heading "App Clean Up" #########################################################
 #
-#clean_up_generated_app_content
+clean_up_generated_app_content
 #annotate_app
 #
 #heading "Setup Testing Frameworks" #############################################
-#apply recipe("spec")
+apply recipe("spec")
 #
 #bootstrap_test_frameworks
-#configure_rspec
+configure_rspec
+configure_factory_girl
+configure_cucumber
+customize_rspec
+customize_cucumber
+
 ## customize_guard_file # Currently a development dependency issue with RSpec
 #configure_test_coverage
 #

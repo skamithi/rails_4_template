@@ -58,5 +58,5 @@ def clean_up_generated_app_content
   remove_file 'public/index.html'
 
   comment "# Remove test directory as not needed for RSpec"
-  run 'rm -rf test/'
+  remove_dir 'test/'
 end

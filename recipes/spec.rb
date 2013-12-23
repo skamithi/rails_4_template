@@ -1,23 +1,45 @@
 def bootstrap_test_frameworks
-  # comment "# Configure app for testing (RSpec with Spork and Guard)"
+  # comment "# Configure app for testing (RSpec)"
   comment "# Configure app for testing (RSpec with Spork)"
   comment "# Bootstrap RSpec"
   generate 'rspec:install'
-  comment "# Bootstrap Spork"
-  run 'spork --bootstrap'
-  # Current development dependency issue with Guard, so don't use for now
-  # comment "# Bootstrap Guard with Rspec and Spork"
-  # run 'guard init rspec'
-  # run 'guard init spork'
 end
 
 def configure_rspec
-  comment "# Configure RSpec output to use Fuubar"
-  append_to_file '.rspec', "--format Fuubar\n--drb"
-
+  comment 'install rspec'
+  generate 'rspec:install'
   comment "# Replace generated spec_helper.rb with custom version"
   remove_file 'spec/spec_helper.rb'
-  copy_from_repo 'spec/spec_helper.rb', erb: true
+  copy_from_repo 'spec/spec_helper.rb'
+end
+
+def customize_rspec
+  comment '# customize rspec'
+  copy_from_repo 'spec/support/capybara.rb'
+  copy_from_repo 'spec/support/custom_translations/translation_dsl.rb'
+  comment 'add spec category directories'
+  %w{ model translations views controllers}.each do |i|
+    empty_directory "spec/#{i}"
+  end
+end
+
+def configure_factory_girl
+  comment '# create directory where factory_girls files go'
+  empty_directory 'spec/support/factories'
+end
+
+def configure_cucumber
+  comment '#initialize cucumber'
+  generate 'cucumber:install'
+end
+
+def customize_cucumber
+  comment '# customize cucumber'
+  copy_from_repo 'features/support/capybara.rb'
+  copy_from_repo 'features/support/delorean.rb'
+  copy_from_repo 'features/support/send_keys.rb'
+  copy_from_repo 'features/support/factory_girl.rb'
+  create_file 'features/step_definitions/common_steps.rb'
 end
 
 def customize_guard_file

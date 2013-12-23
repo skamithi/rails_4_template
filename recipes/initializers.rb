@@ -56,4 +56,7 @@ def i18n_js_initializer
   rake 'i18n:js:setup'
 end
 
-
+def high_voltage_initializer
+  comment "Initialize high voltage static page provider"
+  copy_from_repo "config/initializers/high_voltage.rb"
+end
