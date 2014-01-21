@@ -53,7 +53,7 @@ gem 'compass-rails', '>= 2.0.alpha.0'
 gem 'jquery-rails'
 gem 'oily_png'
 gem 'sassy-buttons'
-gem 'salsa'
+gem 'susy'
 gem 'modernizr-rails'
 gem 'uglifier', '>= 1.0.3'
 
